@@ -7,8 +7,14 @@ spec:
     storage: {{ .Values.postgresql.storage }}
   accessModes:
     - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""  # Critical: Empty string prevents dynamic provisioning
+  claimRef:  # Critical: Pre-bind to specific PVC
+    name: {{ .Values.name.pg }}-pvc
+    namespace: tools
   hostPath:
     path: "{{ .Values.postgresql.hostPath }}"
+    type: DirectoryOrCreate
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -17,6 +23,8 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: ""  # Critical: Must match PV
+  volumeName: {{ .Values.name.pg }}-pv  # Critical: Explicit binding
   resources:
     requests:
       storage: {{ .Values.postgresql.storage }}

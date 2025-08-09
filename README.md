@@ -29,4 +29,6 @@ helm diff upgrade sonarqube sonarqube/sonarqube \
 #####
 
 helm install sonarqube . -n tools
+helm upgrade sonarqube . -n tools
+
 kubectl delete pv sonarqube-pv postgres-pv
