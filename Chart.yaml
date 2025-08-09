@@ -1,0 +1,4 @@
+apiVersion: v2
+name: sonarqube
+description: A Helm chart for local SonarQube with PostgreSQL
+version: 0.1.0
