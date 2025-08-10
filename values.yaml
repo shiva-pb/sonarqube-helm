@@ -5,6 +5,7 @@ name:
 sonarqube:
   image: sonarqube:9.9.8-community
   port: 9000
+  nodePort: 30090
   storage: 5Gi
   hostPath: /Users/shivapb/Applications/sonarqube-data/sonarqube
 
